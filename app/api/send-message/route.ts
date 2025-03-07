@@ -10,11 +10,11 @@ import {
 } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 
 export async function POST(req: NextRequest) {
     const { chat_session_id, chatbot_id, content, name } = await req.json();
-    const { GoogleGenerativeAI } = require("@google/generative-ai");
 
     console.log(
         `Received message from chat session ${chat_session_id}: ${content} (chatbot: ${chatbot_id})`
@@ -56,19 +56,19 @@ export async function POST(req: NextRequest) {
 
         console.log(systemPrompt);
 
-        const messages: ChatCompletionMessageParam[] = [
-            {
-                role: "system",
-                name: "system",
-                content: `You are a helpful assistant talking to ${name}. If a generic question is asked which is not relevant or in the same scope or domain as the points in mentioned in the key information section, kindly inform the user theyre only allowed to search for the specified content. Use Emoji's where possible. Here is some key information that you need to be aware of, these are elements you may be asked about: ${systemPrompt}`,
-            },
-            ...formattedPreviousMessages,
-            {
-                role: "user",
-                name: name,
-                content: content,
-            },
-        ];
+        // const messages: ChatCompletionMessageParam[] = [
+        //     {
+        //         role: "system",
+        //         name: "system",
+        //         content: `You are a helpful assistant talking to ${name}. If a generic question is asked which is not relevant or in the same scope or domain as the points in mentioned in the key information section, kindly inform the user theyre only allowed to search for the specified content. Use Emoji's where possible. Here is some key information that you need to be aware of, these are elements you may be asked about: ${systemPrompt}`,
+        //     },
+        //     ...formattedPreviousMessages,
+        //     {
+        //         role: "user",
+        //         name: name,
+        //         content: content,
+        //     },
+        // ];
 
         const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
