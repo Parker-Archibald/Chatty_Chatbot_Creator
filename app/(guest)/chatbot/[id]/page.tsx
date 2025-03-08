@@ -35,7 +35,7 @@ import {
     GET_CHATBOT_BY_ID,
     GET_MESSAGES_BY_CHAT_SESSION_ID,
 } from "@/graphql/queries/queries";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import startNewChat from "@/lib/startNewChats";
 import Messages from "@/components/Messages";
 
@@ -43,13 +43,16 @@ const formSchema = z.object({
     message: z.string().min(2, "Your Message is too short!"),
 });
 
-function Chatbot({ params: { id } }: { params: { id: string } }) {
+function Chatbot({ params }: { params: Promise<{ id: string }> }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isOpen, setIsOpen] = useState(true);
     const [chatId, setChatId] = useState(0);
     const [loading, setLoading] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
+
+    const par: { id: string } = use(params)
+    const id: string = par.id
 
     const { data: chatBotData } = useQuery<GetChatbotByIdResponse>(
         GET_CHATBOT_BY_ID,
@@ -217,11 +220,11 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
             <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
                 <div className="pb-4 border-b sticky top-0  z-50 bg-[#F07896] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
                     <Avatar
-                        seed={chatBotData!.chatbots?.name}
+                        seed={chatBotData?.chatbots.name!}
                         className="h-12 w-12  rounded-full border-2"
                     />
                     <div>
-                        <h1 className="truncate text-lg">{chatBotData!.chatbots?.name}</h1>
+                        <h1 className="truncate text-lg">{chatBotData?.chatbots.name}</h1>
                         <p className="text-sm text-gray-300">
                             ⚡️ Typically replies Instantly
                         </p>
@@ -230,7 +233,7 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
 
                 <Messages
                     messages={messages}
-                    chatBotName={chatBotData!.chatbots?.name}
+                    chatBotName={chatBotData?.chatbots.name!}
                 />
 
                 <Form {...form}>
