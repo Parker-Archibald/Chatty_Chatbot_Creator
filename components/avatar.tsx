@@ -7,7 +7,7 @@ const Avatar = ({
     seed,
     className,
 }: {
-    seed: string;
+    seed: string | undefined;
     className?: string;
 }): ReactElement => {
     const avatar = createAvatar(rings, {

@@ -13,7 +13,7 @@ function Messages({
     chatBotName,
 }: {
     messages: Message[];
-    chatBotName: string;
+    chatBotName: string | undefined;
 }) {
     const ref = useRef<HTMLDivElement>(null);
     const path = usePathname();
