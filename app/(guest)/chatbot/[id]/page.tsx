@@ -217,11 +217,11 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
             <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
                 <div className="pb-4 border-b sticky top-0  z-50 bg-[#F07896] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
                     <Avatar
-                        seed={chatBotData?.chatbots?.name!}
+                        seed={chatBotData!.chatbots?.name!}
                         className="h-12 w-12  rounded-full border-2"
                     />
                     <div>
-                        <h1 className="truncate text-lg">{chatBotData?.chatbots?.name}</h1>
+                        <h1 className="truncate text-lg">{chatBotData!.chatbots?.name}</h1>
                         <p className="text-sm text-gray-300">
                             ⚡️ Typically replies Instantly
                         </p>
@@ -230,7 +230,7 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
 
                 <Messages
                     messages={messages}
-                    chatBotName={chatBotData?.chatbots.name!}
+                    chatBotName={chatBotData!.chatbots?.name!}
                 />
 
                 <Form {...form}>
