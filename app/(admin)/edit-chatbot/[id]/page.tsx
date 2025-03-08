@@ -16,10 +16,22 @@ import Avatar from "@/components/avatar";
 import Characteristic from "@/components/Characteristic";
 import { ADD_CHARACTERISTIC, DELETE_CHATBOT, UPDATE_CHATBOT } from "@/graphql/mutations/mutations";
 
-function EditChatBot({ params: { id } }: { params: { id: string } }) {
+function EditChatBot({ params }: { params: Promise<{ id: string }> }) {
+
+  const [id, setId] = useState<string>('')
   const [newCharacteristic, setNewCharacteristic] = useState<string>("");
   const [chatbotName, setChatbotName] = useState<string>("");
   const [url, setUrl] = useState<string>("");
+
+  useEffect(() => {
+    const getId = async () => {
+      const i = (await params).id
+
+      setId(i)
+    }
+
+    getId()
+  }, [])
 
   const [deleteChatbot] = useMutation(DELETE_CHATBOT, {
     refetchQueries: ["GetChatbotById"], // Refetch the chatbots after deleting
