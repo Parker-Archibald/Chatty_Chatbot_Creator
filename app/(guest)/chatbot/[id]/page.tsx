@@ -221,7 +221,7 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
                         className="h-12 w-12  rounded-full border-2"
                     />
                     <div>
-                        <h1 className="truncate text-lg">{chatBotData!.chatbots.name}</h1>
+                        <h1 className="truncate text-lg">{chatBotData?.chatbots.name}</h1>
                         <p className="text-sm text-gray-300">
                             ⚡️ Typically replies Instantly
                         </p>

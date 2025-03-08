@@ -42,12 +42,12 @@ export async function POST(req: NextRequest) {
             });
 
         const previousMessages = messagesData.chat_sessions.messages;
-        // const formattedPreviousMessages: ChatCompletionMessageParam[] =
-        //     previousMessages.map((message) => ({
-        //         role: message.sender === "ai" ? "system" : "user",
-        //         name: message.sender === "ai" ? "system" : name,
-        //         content: message.content,
-        //     }));
+        const formattedPreviousMessages: ChatCompletionMessageParam[] =
+            previousMessages.map((message) => ({
+                role: message.sender === "ai" ? "system" : "user",
+                name: message.sender === "ai" ? "system" : name,
+                content: message.content,
+            }));
 
         // Combine characteristics into a system prompt
         const systemPrompt = chatbot.chatbot_characteristics
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
         is not relevant or in the same scope or domain as the points in mentioned in the key information section, 
         kindly inform the user theyre only allowed to search for the specified content. Use Emoji's where possible.
          Here is some key information that you need to be aware of, these are elements you may be asked about: 
-         ${systemPrompt}. Here is their input: ${content}`;
+         ${systemPrompt}. Here is their input: ${content}. Here are the past messages in the conversation: ${formattedPreviousMessages.toString()}`;
 
         const result = await model.generateContent(prompt);
 
