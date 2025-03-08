@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { GetChatbotByIdResponse, ChatbotCharacteristics } from "@/types/types"; // Import necessary types
+import { GetChatbotByIdResponse, ChatbotCharacteristic } from "@/types/types"; // Import necessary types
 import { GET_CHATBOT_BY_ID } from "@/graphql/queries/queries";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { Copy } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 // import Characteristic from "@/components/Characteristic";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { BASE_URL } from "@/graphql/apolloClient";
 import Avatar from "@/components/avatar";
 import Characteristic from "@/components/Characteristic";
@@ -210,7 +210,7 @@ function EditChatBot({ params: { id } }: { params: { id: string } }) {
 
           <ul className="flex flex-wrap-reverse gap-5 ">
             {data?.chatbots.chatbot_characteristics.map(
-              (characteristic: ChatbotCharacteristics) => (
+              (characteristic: ChatbotCharacteristic) => (
                 <Characteristic
                   key={characteristic.id}
                   characteristic={characteristic}

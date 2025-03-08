@@ -42,12 +42,12 @@ export async function POST(req: NextRequest) {
             });
 
         const previousMessages = messagesData.chat_sessions.messages;
-        const formattedPreviousMessages: ChatCompletionMessageParam[] =
-            previousMessages.map((message) => ({
-                role: message.sender === "ai" ? "system" : "user",
-                name: message.sender === "ai" ? "system" : name,
-                content: message.content,
-            }));
+        // const formattedPreviousMessages: ChatCompletionMessageParam[] =
+        //     previousMessages.map((message) => ({
+        //         role: message.sender === "ai" ? "system" : "user",
+        //         name: message.sender === "ai" ? "system" : name,
+        //         content: message.content,
+        //     }));
 
         // Combine characteristics into a system prompt
         const systemPrompt = chatbot.chatbot_characteristics

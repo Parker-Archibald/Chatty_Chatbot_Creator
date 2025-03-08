@@ -16,7 +16,6 @@ async function ReviewSessionChat({
     const {
         data: {
             chat_sessions: {
-                id: chatSessionId,
                 created_at,
                 messages,
                 chatbots: { name },

@@ -1,16 +1,15 @@
 "use client";
 
 import { REMOVE_CHARACTERISTIC } from "@/graphql/mutations/mutations";
-import { ChatbotCharacteristics } from "@/types/types";
+import { ChatbotCharacteristic } from "@/types/types";
 import { useMutation } from "@apollo/client";
-import { Button } from "./ui/button";
 import { CircleX } from "lucide-react";
 import { toast } from "sonner";
 
 function Characteristic({
     characteristic,
 }: {
-    characteristic: ChatbotCharacteristics;
+    characteristic: ChatbotCharacteristic;
 }) {
     const [removeCharacteristic] = useMutation(REMOVE_CHARACTERISTIC, {
         refetchQueries: ["GetChatbotById"],

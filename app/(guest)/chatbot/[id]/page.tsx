@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -60,8 +59,6 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
     );
 
     const {
-        loading: loadingQuery,
-        error,
         data,
     } = useQuery<MessagesByChatSessionIdResponse>(
         GET_MESSAGES_BY_CHAT_SESSION_ID,
@@ -224,7 +221,7 @@ function Chatbot({ params: { id } }: { params: { id: string } }) {
                         className="h-12 w-12  rounded-full border-2"
                     />
                     <div>
-                        <h1 className="truncate text-lg">{chatBotData?.chatbots.name}</h1>
+                        <h1 className="truncate text-lg">{chatBotData!.chatbots.name}</h1>
                         <p className="text-sm text-gray-300">
                             ⚡️ Typically replies Instantly
                         </p>
