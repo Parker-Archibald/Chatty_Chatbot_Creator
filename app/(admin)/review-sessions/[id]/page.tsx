@@ -9,10 +9,13 @@ import {
 
 export const dynamic = "force-dynamic";
 async function ReviewSessionChat({
-    params: { id },
+    params,
 }: {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }) {
+
+    const id = (await params).id;
+
     const {
         data: {
             chat_sessions: {
