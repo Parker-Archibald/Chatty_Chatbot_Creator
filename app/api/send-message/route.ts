@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
         //     },
         // ];
 
-        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!.toString());
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `You are a helpful assistant talking to ${name}. If a generic question is asked which 
