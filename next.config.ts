@@ -13,8 +13,8 @@ module.exports = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors *"
-          }
+            value: "frame-ancestors 'self' http://localhost:3000/"
+          },
         ]
       }
     ]
