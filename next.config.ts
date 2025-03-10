@@ -19,6 +19,10 @@ module.exports = {
             key: 'Content-Security-Policy',
             value: cspHeader.replace(/\n/g, ''),
           },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          }
         ],
       },
     ]
