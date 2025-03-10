@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
 
 const cspHeader = `
     frame-ancestors 'self' https://parkerarchibald-qyrombw4c-parkerarchibalds-projects.vercel.app/ http://localhost:3000/;
+    x-frame-options SAMEORIGIN
 `
 
 module.exports = {
@@ -18,10 +19,6 @@ module.exports = {
           {
             key: 'Content-Security-Policy',
             value: cspHeader.replace(/\n/g, ''),
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
           }
         ],
       },
