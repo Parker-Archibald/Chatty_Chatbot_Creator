@@ -13,7 +13,7 @@ module.exports = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' http://localhost:3000/"
+            value: "frame-ancestors 'self' https://parkerarchibald-qyrombw4c-parkerarchibalds-projects.vercel.app/"
           },
         ]
       }
