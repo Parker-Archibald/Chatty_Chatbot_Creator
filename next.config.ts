@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 };
 
 const cspHeader = `
-    frame-ancestors 'self' https://parkerarchibald-qyrombw4c-parkerarchibalds-projects.vercel.app/ http://localhost:3000/;
+    frame-ancestors 'self' *;
     x-frame-options SAMEORIGIN
 `
 
